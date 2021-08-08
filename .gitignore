@@ -45,3 +45,5 @@ images
 *.log
 *.h5
 *.pickle
+*.png
+*.jpg
