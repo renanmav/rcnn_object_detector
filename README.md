@@ -1,6 +1,6 @@
 # rcnn_object_detector
 
-Based on this blog post by Adrian Rosebrock.
+Based on [this blog post](https://www.pyimagesearch.com/2020/07/13/r-cnn-object-detection-with-keras-tensorflow-and-deep-learning/) by Adrian Rosebrock.
 
 GPU enabled.
 

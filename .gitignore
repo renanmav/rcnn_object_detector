@@ -43,3 +43,5 @@ images
 
 # Custom
 *.log
+*.h5
+*.pickle

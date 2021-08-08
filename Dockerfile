@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:2.4.2-gpu
+FROM tensorflow/tensorflow:2.4.2
 
 # Update pip
 RUN python3 -m pip install --upgrade pip
@@ -59,8 +59,7 @@ RUN cd /opt/ &&\
         -D WITH_CUDNN=OFF \
         -D OPENCV_DNN_CUDA=OFF \
         -D CMAKE_BUILD_TYPE=RELEASE \
-        # TODO: add CUDA and CUDNN here (I'm using a Ubuntu guest with an RTX 3070 passed 
-        # through VFIO because NVIDIA provides better support)
+        # TODO: add CUDA and CUDNN here
         #
         # Examples:
         # -D ENABLE_FAST_MATH=1 \
@@ -96,6 +95,11 @@ WORKDIR ${ROOT_DIR}
 # Copy and install requirements.txt packages
 ADD requirements.txt .
 RUN pip install -r requirements.txt
+
+# Configure matplotlib
+RUN mkdir -p /.config/matplotlib
+RUN chmod 777 /.config/matplotlib
+ENV MPLCONFIGDIR=/.config/matplotlib
 
 # Copy all files
 ADD . .
