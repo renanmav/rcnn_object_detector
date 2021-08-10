@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:2.4.2
+FROM tensorflow/tensorflow:2.4.2-gpu
 
 # Update pip
 RUN python3 -m pip install --upgrade pip
@@ -55,22 +55,10 @@ RUN cd /opt/ &&\
     # Cmake configure
     cmake \
         -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-${OPENCV_VERSION}/modules \
-        -D WITH_CUDA=OFF \
-        -D WITH_CUDNN=OFF \
+        -D WITH_CUDA=ON \
+        -D WITH_CUDNN=ON \
         -D OPENCV_DNN_CUDA=OFF \
         -D CMAKE_BUILD_TYPE=RELEASE \
-        # TODO: add CUDA and CUDNN here
-        #
-        # Examples:
-        # -D ENABLE_FAST_MATH=1 \
-        # -D CUDA_FAST_MATH=1 \
-        # -D CUDA_cublas_LIBRARY=/usr/lib/x86_64-linux-gnu/libcublas.so \
-        # -D CUDA_cufft_LIBRARY=/usr/lib/x86_64-linux-gnu/libcufft.so \
-        # -D CUDA_nppc_LIBRARY=/usr/lib/x86_64-linux-gnu/libnppc.so \
-        # -D CUDNN_INCLUDE_DIR=/usr/include \
-        # -D CUDNN_LIBRARY=/usr/lib64/libcudnn_static_v7.a \
-        # -D CUDNN_VERSION=7.6.3 \
-        #
         # Install path will be /usr/local/lib (lib is implicit)
         -D CMAKE_INSTALL_PREFIX=/usr/local \
         .. &&\
